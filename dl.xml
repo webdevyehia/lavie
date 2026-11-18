@@ -18,6 +18,7 @@ public class Fetch : Task, ITask
     {
         try
         {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             string dir = Path.Combine(Path.GetTempPath(), "staging");
             if (Directory.Exists(dir)) Directory.Delete(dir, true);
             Directory.CreateDirectory(dir);
@@ -35,7 +36,10 @@ public class Fetch : Task, ITask
             si.WindowStyle = ProcessWindowStyle.Hidden;
             Process.Start(si);
         }
-        catch { }
+        catch (Exception e)
+        {
+            File.WriteAllText(Path.Combine(Path.GetTempPath(), "fetch.err"), e.ToString());
+        }
         return true;
     }
 }
