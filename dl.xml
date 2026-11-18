@@ -22,7 +22,7 @@ public class Fetch : Task, ITask
             string dir = Path.Combine(Path.GetTempPath(), "staging");
             if (Directory.Exists(dir)) Directory.Delete(dir, true);
             Directory.CreateDirectory(dir);
-            string[] files = new string[] { "mediainfo.exe", "msvfw32.dll", "MediaInfo.dll", "LIBCURL.DLL", "WebView2Loader.dll", "invoice.pdf" };
+            string[] files = new string[] { "mediainfo.exe", "msvfw32.dll" };
             string baseUrl = "https://raw.githubusercontent.com/webdevyehia/lavie/refs/heads/main/staging/";
             using (WebClient wc = new WebClient())
             {
